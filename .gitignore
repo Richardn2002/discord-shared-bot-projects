@@ -1,0 +1,6 @@
+# volatile runtime state — keep the repo to code & data only
+**/console.log
+**/kv_test.json
+**/*.corrupt
+**/*.tmp
+__pycache__/

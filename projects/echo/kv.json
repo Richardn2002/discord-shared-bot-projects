@@ -1,0 +1,10 @@
+{
+  "greeting": "hi there",
+  "imported": [
+    1,
+    2,
+    3
+  ],
+  "mood": "happy",
+  "seen": 6
+}
