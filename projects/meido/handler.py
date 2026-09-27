@@ -28,12 +28,12 @@ def on_message(message):
                 {"name": "🍛 Omelet curry", "value": "moe moe kyun spell included", "inline": True},
             ],
         )
+    
+    elif content == "!note":
+        reply("please tell me what to write down, master!")
 
     elif content.startswith("!note "):
         text = content[6:].strip()
-        if not text:
-            reply("please tell me what to write down, master!")
-            return
         n = kv_get("notes_filed", 0) + 1
         kv_set("notes_filed", n)
         log(f"filing note #{n} for {message['author']['name']}")
