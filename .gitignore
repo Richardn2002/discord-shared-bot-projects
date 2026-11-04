@@ -1,7 +1,9 @@
 # volatile runtime state — keep the repo to code & data only
 **/console.log
 **/kv_test.json
+# per-project secrets (API keys etc.) — never commit:
+**/.env
 **/*.corrupt
 **/*.tmp
 __pycache__/
-.env
+.secrets/
