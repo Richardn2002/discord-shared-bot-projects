@@ -1,0 +1,10 @@
+{
+  "slug": "patdabot",
+  "nickname": "Pat Da Bot",
+  "author": "hugo",
+  "timeout": 5.0,
+  "tolerance": 10.0,
+  "created_at": "2026-10-10T14:55:38+00:00",
+  "created_ts": 1791644138.5497315,
+  "deployed_at": "2026-10-10T15:00:56+00:00"
+}

@@ -11,70 +11,73 @@ STATE_KEY = "pest"
 
 # --- 数值 ------------------------------------------------------------------
 HUNGER_PER_H = 5.0          # 它永远饿
-VIGOR_PER_H = 11.0
-ENTROPY_PER_H = 15.0        # 糖分（熵差）会慢慢烧掉
+VIGOR_PER_H = 24.0
 STARVE_BOND_PER_H = 2.0
 BOND_CAP = 100.0
 VIGOR_BASE = 100
 VIGOR_PER_LEVEL = 5         # 每升一级，体力上限 +5
 OFFLINE_CAP_H = 12.0        # 离线收益最多累计这么久
-IDLE_XP_PER_H = 3.0
+IDLE_XP_PER_H = 2.0
 SCAVENGE_PER_H = 0.5
 AWAY_MIN_H = 0.2            # 离开超过 12 分钟才值得汇报
 RENAME_CD = 6 * 3600
 FEED_CD = 20
+PET_CD = 60
 EXPLORE_CD = 60
+EXPLORE_HUNGER_COST = 6.0
 BAG_KIND_CAP = 14
 MAX_FEED_N = 25
+FEED_XP_CAP = 10
+FEED_BOND_CAP = 8.0
 
 # --- 物品 ------------------------------------------------------------------
-# kind 类别；nourish 饱食、bond 信任、entropy 跳高加成、xp 经验、tier 稀有度
+# kind 类别；nourish 饱食、bond 信任、xp 经验、tier 稀有度
 ITEMS = {
     "bio_scrap": {
         "name": "生物废料", "emoji": "\U0001F9EC", "kind": "resource", "nourish": 0, "bond": -4,
-        "xp": 8, "entropy": 0, "tier": 0,
+        "xp": 8, "tier": 0,
         "description": "一堆生物废料。也许能派上用场。",
         "flavor": "别把它和真正的食物弄混了。",
     },
     "nachos": {
         "name": "玉米片", "emoji": "\U0001F32E", "kind": "food", "nourish": 26, "bond": 4,
-        "xp": 4, "entropy": 16, "tier": 0,
+        "xp": 4, "tier": 0,
         "description": "一些落满灰尘的旧玉米片。",
-        "flavor": "很不新鲜，但能吃。",
+        "flavor": "很不新鲜。能吃。",
     },
     "bread": {
         "name": "面包", "emoji": "\U0001F35E", "kind": "food", "nourish": 32, "bond": 3,
-        "xp": 5, "entropy": 2, "tier": 0,
+        "xp": 5, "tier": 0,
         "description": "一块用小麦烤成的香喷喷面包。至少，那东西应该算小麦。",
         "flavor": "",
     },
     "anteverse_wheat": {
         "name": "异世界小麦", "emoji": "\U0001F33E", "kind": "food", "nourish": 20,
-        "bond": 2, "xp": 3, "entropy": 1, "tier": 0,
+        "bond": 2, "xp": 3, "tier": 0,
         "description": "来自另一个更加古怪地方的奇异小麦。可能具有治疗作用。",
         "flavor": "把它称作谷物，多少有些勉强。",
     },
     "raw_pest": {
         "name": "害虫生肉", "emoji": "\U0001F969", "kind": "food", "nourish": 34, "bond": -1,
-        "xp": 11, "entropy": 6, "tier": 1,
+        "xp": 11, "tier": 1,
         "description": "未经烹饪的害虫头部。",
         "flavor": "IS-0173",
     },
     "rump": {
         "name": "害虫臀肉", "emoji": "\U0001F356", "kind": "food", "nourish": 40,
-        "bond": -2, "xp": 14, "entropy": 9, "tier": 1,
+        "bond": -2, "xp": 14, "tier": 1,
         "description": "未经烹饪的害虫臀肉。",
         "flavor": "一大团肌肉，夹在多得过分的软骨之间。",
     },
     "pheromone": {
         "name": "信息素烧瓶", "emoji": "\U0001F9EA", "kind": "tool", "nourish": 4,
-        "bond": 30, "xp": 6, "entropy": 3, "tier": 1,
+        "bond": 30, "xp": 6, "tier": 1,
         "description": "一种投掷后会释放宜人、舒缓气味的混合物，可安抚较低等的 Anteverse 2 生物。",
         "flavor": "",
     },
     "trap": {
         "name": "害虫捕兽夹", "emoji": "\U0001FAA4", "kind": "tool", "nourish": 0, "bond": 12,
-        "xp": 8, "entropy": 0, "tier": 1,
+        "xp": 8, "tier": 1,
         "description": "用于捕捉可驯化生物的可部署陷阱。",
         "flavor": "给困住的害虫喂食特定食物，就能驯服一只带刺宠物。",
     },
@@ -103,12 +106,12 @@ PLACES = {
     },
     "server_sub": {
         "name": "服务器房地板下", "level": 1, "weight": 8, "xp": 9, "danger": 0.22,
-        "text": "冷却机组持续嗡鸣，活动地板下面藏着一处温热角落。",
+        "text": "冷却机组持续嗡鸣。活动地板下面藏着一处温热角落。",
         "drops": (("bio_scrap", 0.40), ("pheromone", 0.08)),
     },
     "wheat_crate": {
-        "name": "Anteverse Wheat 货箱", "level": 1, "weight": 7, "xp": 11, "danger": 0.15,
-        "text": "开裂的货箱里散落着几穗 Anteverse Wheat。",
+        "name": "异世界小麦货箱", "level": 1, "weight": 7, "xp": 11, "danger": 0.15,
+        "text": "开裂的货箱里散落着几穗异世界小麦。",
         "drops": (("anteverse_wheat", 0.50), ("bio_scrap", 0.20)),
     },
     "crawlway": {
@@ -122,8 +125,8 @@ PLACES = {
         "drops": (("raw_pest", 0.35), ("rump", 0.32), ("bio_scrap", 0.15)),
     },
     "trap_corridor": {
-        "name": "Pest 陷阱存放区", "level": 5, "weight": 5, "xp": 16, "danger": 0.30,
-        "text": "一台尚未装入诱饵的 Pest 陷阱摆在墙边。",
+        "name": "害虫捕兽夹存放区", "level": 5, "weight": 5, "xp": 16, "danger": 0.30,
+        "text": "一台尚未装入诱饵的害虫捕兽夹摆在墙边。",
         "drops": (("trap", 0.30), ("pheromone", 0.20), ("bio_scrap", 0.20)),
     },
     "containment": {
@@ -148,10 +151,12 @@ PLACE_NAME_MIGRATIONS = {
     "休息室 14 号柜": "休息区储物柜",
     "食堂大厅": "食堂桌下",
     "服务器房地下层": "服务器房地板下",
-    "小麦货箱": "Anteverse Wheat 货箱",
+    "小麦货箱": "异世界小麦货箱",
+    "Anteverse Wheat 货箱": "异世界小麦货箱",
     "主通风廊道": "主通风廊道",
     "停尸间 B 柜": "冷藏储藏间",
-    "捕兽夹走廊": "Pest 陷阱存放区",
+    "捕兽夹走廊": "害虫捕兽夹存放区",
+    "Pest 陷阱存放区": "害虫捕兽夹存放区",
     "收容大厅（8 英尺栏）": "隔音收容区",
     "Anteverse 2 破口": "Anteverse 2 接触区",
     "9 号天桥俯瞰台": "高层货架",
@@ -226,7 +231,6 @@ HAZARDS = {
 EAT_LINES = (
     "它闻了闻，一口吞掉了。",
     "它用舌头卷走了。",
-    "它把食物分成三份，再用舌头依次卷走。",
     "它整个趴到食物上去了。",
     "它把食物摁在箱子底部蹭了两下才吃。",
     "它先咬住，松口，再咬住，再松口，重复了六次。",
@@ -315,7 +319,7 @@ OBSERVATIONS = (
         "它把箱子横在你们两个中间。",
         "它退到观察区最远的一侧。",
         "它整个缩进垫料堆，只留一根尖刺在外面。",
-        "它伏在桌下，只从阴影里看着你。",
+        "它伏在桌下，整个埋进阴影里。",
     )),
     (0, (
         "它伏低身体，舌头短促地弹了一下。",
@@ -329,7 +333,7 @@ STARVE_OBSERVATIONS = (
     "它守在投食口前，舌尖在空盘里来回扫。",
     "它在食物柜和你之间来回蹦。",
     "它整个贴在投食口上。",
-    "它伏在投食口下，只盯着你手里的东西。",
+    "它伏在投食口下，舌头压在食盘边上。",
 )
 
 
@@ -362,11 +366,41 @@ def fmt_dur(seconds):
 
 
 def xp_needed(level):
-    return int(28 * (level ** 1.45))
+    return int(18 * (level ** 1.45))
 
 
 def vigor_max(state):
     return VIGOR_BASE + VIGOR_PER_LEVEL * (state["level"] - 1)
+
+
+def explore_vigor_cost(place):
+    return 9.0 + place["level"] / 4.0
+
+
+def explore_loot_bonus(state):
+    return min(0.15, max(0.0, (state["jump"] - 100) * 0.001
+                         + (state["tongue"] - 12) * 0.005))
+
+
+def explore_risk_reduction(state):
+    return min(0.15, max(0.0, state["spikes"] - 3) * 0.01)
+
+
+def feed_xp_amount(item, count=1):
+    return min(item["xp"] * count, FEED_XP_CAP)
+
+
+def feed_bond_amount(item, count=1):
+    return clamp(item["bond"] * count, -FEED_BOND_CAP, FEED_BOND_CAP)
+
+
+def feed_effect_text(item):
+    xp = feed_xp_amount(item)
+    xp_text = "%+d" % xp
+    if item["xp"] > FEED_XP_CAP:
+        xp_text += "（封顶）"
+    return "单份效果 · 饱食%+d · 信任%+d · 经验%s" % (
+        item["nourish"], feed_bond_amount(item), xp_text)
 
 
 def observe(state):
@@ -456,10 +490,10 @@ def new_state(now):
         "born": now,
         "level": 1,
         "xp": 0,
+        "idle_xp": 0.0,
         "bond": 0.0,
         "hunger": 55.0,
         "vigor": 70.0,
-        "entropy": 0.0,
         "jump": 100,
         "spikes": 3,
         "tongue": 12,
@@ -476,7 +510,7 @@ def new_state(now):
     }
 
 
-NUM_FIELDS = ("level", "xp", "bond", "hunger", "vigor", "entropy", "jump",
+NUM_FIELDS = ("level", "xp", "idle_xp", "bond", "hunger", "vigor", "jump",
               "spikes", "tongue", "size_len", "size_wid",
               "last", "born", "renamed_at")
 
@@ -485,6 +519,8 @@ def sane_state(state):
     """存下来的状态能不能信。不能就丢掉重建。"""
     if not isinstance(state, dict) or state.get("v") != STATE_VERSION:
         return None
+    if "idle_xp" not in state:
+        state["idle_xp"] = 0.0
     for field in NUM_FIELDS:
         value = state.get(field)
         if isinstance(value, bool) or not isinstance(value, (int, float)):
@@ -543,7 +579,7 @@ def load_state(state):
                   if isinstance(v, (int, float)) and not isinstance(v, bool)})
     state["tally"] = tally
     state["where"] = PLACE_NAME_MIGRATIONS.get(state["where"], state["where"])
-    state["cd"].pop("pet", None)
+    state.pop("entropy", None)  # 熵值系统已移除，顺手清掉旧存档字段
     report = tick(state, now)
     return state, report
 
@@ -568,7 +604,7 @@ def best_food(state):
     best = None
     for key, count in state["bag"].items():
         item = ITEMS.get(key)
-        if not item or item["kind"] == "tool" or count <= 0:
+        if not item or item["kind"] != "food" or count <= 0:
             continue
         rank = (item["nourish"], -item["bond"], -item["tier"])
         if best is None or rank > (ITEMS[best]["nourish"], -ITEMS[best]["bond"],
@@ -579,7 +615,7 @@ def best_food(state):
 
 # --- 离线结算 --------------------------------------------------------------
 def tick(state, now=None):
-    """按真实时间把宠物往前推。返回一个「你不在的时候」汇报，或者 None。"""
+    """按真实时间把宠物往前推。返回一个「上次照看后」汇报，或者 None。"""
     now = float(now if now is not None else time.time())
     last = float(state.get("last") or now)
     hours = (now - last) / 3600.0
@@ -591,7 +627,6 @@ def tick(state, now=None):
     starving = state["hunger"] <= 0.0
     state["hunger"] = clamp(state["hunger"] - HUNGER_PER_H * hours, 0.0, 100.0)
     state["vigor"] = clamp(state["vigor"] + VIGOR_PER_H * hours, 0.0, vigor_max(state))
-    state["entropy"] = clamp(state["entropy"] - ENTROPY_PER_H * hours, 0.0, 100.0)
     state["last"] = now
 
     report = {"hours": hours, "notes": [], "starved": False, "levels": 0, "xp": 0}
@@ -605,7 +640,6 @@ def tick(state, now=None):
                 del state["bag"][snack]
             item = ITEMS[snack]
             state["hunger"] = clamp(state["hunger"] + item["nourish"] * 0.8, 0.0, 100.0)
-            state["entropy"] = clamp(state["entropy"] + item["entropy"] * 0.3, 0.0, 100.0)
             state["tally"]["snacks"] += 1
             report["notes"].append("自己把 %s 吃了" % item["name"])
         else:
@@ -623,7 +657,9 @@ def tick(state, now=None):
     for _ in range(rolls):
         add_to_bag(state, random.choice(SCAVENGE_POOL))
 
-    report["xp"] = int(IDLE_XP_PER_H * hours)
+    idle_total = IDLE_XP_PER_H * hours + state["idle_xp"]
+    report["xp"] = int(idle_total)
+    state["idle_xp"] = idle_total - report["xp"]
     report["levels"] = give_xp(state, report["xp"])
     if hours < AWAY_MIN_H:
         return None
@@ -631,7 +667,7 @@ def tick(state, now=None):
 
 
 def with_away(text, state, report):
-    """把「你不在的时候」那段汇报拼到正文前面；没有内容就什么都不加。"""
+    """把「上次照看后」的汇报拼到正文前面；没有内容就什么都不加。"""
     line = away_line(state, report)
     return line + "\n\n" + text if line else text
 
@@ -651,13 +687,15 @@ def away_line(state, report):
         bits.append("它饿着")
     if not bits:
         return ""
-    return "你不在的时候，%s：%s。" % (who, "、".join(bits))
+    return "上次照看之后，%s：%s。" % (who, "、".join(bits))
 
 
 # --- 文本 ------------------------------------------------------------------
 def status_text(state, report):
     need = xp_needed(state["level"])
     top = vigor_max(state)
+    loot_bonus = explore_loot_bonus(state) * 100.0
+    risk_reduction = explore_risk_reduction(state) * 100.0
     lines = ["\U0001F954 **%s** \u00b7 Lv%d" % (state["name"], state["level"]),
              meter("经验", state["xp"] * 100.0 / max(1, need), "%d/%d" % (state["xp"], need)),
              meter("信任", state["bond"], "%d%%" % int(state["bond"])),
@@ -666,6 +704,10 @@ def status_text(state, report):
              "",
              observe(state)]
     lines.append("IS-0173-A \u00b7 身处%s" % state["where"])
+    lines.append("跳跃高度 %d%% \u00b7 尖刺 %d 根 \u00b7 舌头灵活度 %d" %
+                 (state["jump"], state["spikes"], state["tongue"]))
+    lines.append("探索加成 \u00b7 掉落率 +%.1f 个百分点 \u00b7 危险率最多 -%.1f 个百分点" %
+                 (loot_bonus, risk_reduction))
     lines.append("已探索 %d/%d 个地点 \u00b7 累计 %d 次探索、%d 次投喂、%d 次抚摸"
                  % (len(state["codex"]), len(PLACES), state["tally"]["explores"],
                     state["tally"]["feeds"], state["tally"]["pets"]))
@@ -686,12 +728,11 @@ def bag_text(state, report):
     found_items = [(key, count) for key, count in ranked if ITEMS[key]["kind"] == "tool"]
 
     if feed_items:
-        lines.append("\n**可投喂物**")
+        lines.append("\n**可投喂物** · 以下为单份效果")
         for key, count in feed_items:
             item = ITEMS[key]
-            lines.append("%s **%s** x%d　_饱食%+d · 信任%+d · 经验%+d_" %
-                         (item["emoji"], item["name"], count, item["nourish"],
-                          item["bond"], item["xp"]))
+            lines.append("%s **%s** x%d　_%s_" %
+                         (item["emoji"], item["name"], count, feed_effect_text(item)))
     if found_items:
         lines.append("\n**探索收获**")
         for key, count in found_items:
@@ -723,8 +764,7 @@ def item_field(key, item, held):
     if item["kind"] == "tool":
         effect = "探索收获 · 不可投喂"
     else:
-        effect = "本项目效果 · 饱食%+d · 信任%+d · 经验%+d" % (
-            item["nourish"], item["bond"], item["xp"])
+        effect = feed_effect_text(item)
     value = "带着 %d\n%s\n%s" % (held, effect, item["description"])
     if item["flavor"]:
         value += "\n_%s_" % item["flavor"]
@@ -738,7 +778,10 @@ def items_embed(state, report):
     feed_items = [(key, item) for key, item in ranked if item["kind"] != "tool"]
     found_items = [(key, item) for key, item in ranked if item["kind"] == "tool"]
     if feed_items:
-        fields.append({"name": "可投喂物", "value": "Wiki 说明与本项目投喂效果", "inline": False})
+        fields.append({"name": "可投喂物",
+                       "value": "以下为单份效果；整次投喂经验最多 +%d，信任变化限制在 -%d 至 +%d。" %
+                                (FEED_XP_CAP, int(FEED_BOND_CAP), int(FEED_BOND_CAP)),
+                       "inline": False})
         fields.extend(item_field(key, item, int(state["bag"].get(key, 0)))
                      for key, item in feed_items)
     if found_items:
@@ -750,27 +793,36 @@ def items_embed(state, report):
             "color": 0x5865F2, "fields": fields}
 
 
-HELP_ROWS = (
-    (cmd("pet"), "抚摸"),
-    (cmd("explore"), "让它出去转一圈"),
-    (cmd("feed [物品] [数量]"), "喂它；不给就自动挑一份"),
-    (cmd("rename <名字>"), "给它起名"),
-    (cmd("bag"), "背包"),
-    (cmd("codex"), "去过的地点"),
-    (cmd("items"), "物品说明"),
-    (cmd("help"), "这页"),
+HELP_COMMANDS = (
+    cmd(""),
+    cmd("pet"),
+    cmd("explore"),
+    cmd("feed [物品] [数量]"),
+    cmd("rename <名字>"),
+    cmd("bag"),
+    cmd("codex"),
+    cmd("items"),
+    cmd("help"),
 )
-HELP_ALIASES = ((cmd("go"), "探索"), (cmd("inv"), "背包"),
-                (cmd("dex"), "图鉴"), (cmd("name"), "改名"))
 
 
-def help_text(state, report):
-    lines = ["**非生物因素**：Feed the Pest。收容箱里关着 IS-0173-A。", ""]
-    lines += ["`" + c + "`\u3000" + d for c, d in HELP_ROWS]
-    lines += ["",
-              "别名：" + "，".join("`" + a + "` = " + w for a, w in HELP_ALIASES),
-              "饱食每小时 -%d，体力每小时 +%d。" % (int(HUNGER_PER_H), int(VIGOR_PER_H))]
-    return "ok", "\n".join(lines)
+def help_embed(state, report):
+    fields = [{"name": "命令",
+               "value": "\n".join("`" + c + "`" for c in HELP_COMMANDS),
+               "inline": False}]
+    fields.append({"name": "数值规则",
+                   "value": ("日常：饱食每小时 -%d，体力每小时 +%d。\n"
+                             "探索：需要至少 %d 点饱食，出发时饱食 -%d，并消耗地点所需体力。\n"
+                             "投喂：物品栏显示单份效果；每次经验最多 +%d，信任变化限制在 -%d 至 +%d。"
+                             % (int(HUNGER_PER_H), int(VIGOR_PER_H),
+                                int(EXPLORE_HUNGER_COST), int(EXPLORE_HUNGER_COST),
+                                FEED_XP_CAP, int(FEED_BOND_CAP), int(FEED_BOND_CAP))),
+                   "inline": False})
+    description = away_line(state, report)
+    description = (description + "\n\n收容箱里关着 IS-0173-A。" if description
+                   else "收容箱里关着 IS-0173-A。")
+    return {"title": "非生物因素 · Feed the Pest",
+            "description": description, "color": 0x5865F2, "fields": fields}
 
 
 def vitals_lines(state):
@@ -798,8 +850,7 @@ def cmd_items(state, who, args, report):
 
 
 def cmd_help(state, who, args, report):
-    # help_text 自己就返回 (kind, text)
-    return help_text(state, report)
+    return "embed", help_embed(state, report)
 
 
 def cmd_rename(state, who, args, report):
@@ -814,7 +865,7 @@ def cmd_rename(state, who, args, report):
         return "err", "它现在就叫%s。" % state["name"]
     cooldown = cd_left(state, "rename", RENAME_CD)
     if cooldown > 0:
-        return "err", "名字换一次要等 %s。" % fmt_dur(cooldown)
+        return "err", fmt_dur(cooldown)
 
     first_claim = state.get("keeper") is None
     state["name"] = name
@@ -831,15 +882,18 @@ def cmd_rename(state, who, args, report):
 def cmd_explore(state, who, args, report):
     cooldown = cd_left(state, "explore", EXPLORE_CD)
     if cooldown > 0:
-        return "err", "它还在探索，预计 %s 后回来。" % fmt_dur(cooldown)
-    if state["hunger"] <= 0.0:
-        return "err", "它守在投食口前，不肯出发。先喂点东西：`%s <物品>`" % cmd("feed")
-    if state["vigor"] < 10.0:
-        return "err", ("它伏在宠物床旁，没有起跳。体力 %d/%d，每小时回 %d。"
-                       % (int(state["vigor"]), vigor_max(state), VIGOR_PER_H))
-
+        return "err", fmt_dur(cooldown)
+    if state["hunger"] < EXPLORE_HUNGER_COST:
+        return "err", "需要饱食 ≥ %d｜现在 %d" % (int(EXPLORE_HUNGER_COST),
+                                        int(state["hunger"]))
     open_keys = [k for k in PLACES if PLACES[k]["level"] <= state["level"]]
-    key, _weight = weighted_choice([(k, PLACES[k]["weight"]) for k in open_keys])
+    affordable_keys = [k for k in open_keys
+                       if state["vigor"] >= explore_vigor_cost(PLACES[k])]
+    if not affordable_keys:
+        needed = min(explore_vigor_cost(PLACES[k]) for k in open_keys)
+        return "err", ("需要体力 ≥ %g｜体力 %d/%d" %
+                       (needed, int(state["vigor"]), int(vigor_max(state))))
+    key, _weight = weighted_choice([(k, PLACES[k]["weight"]) for k in affordable_keys])
     place = PLACES[key]
 
     state["cd"]["explore"] = time.time()
@@ -854,8 +908,9 @@ def cmd_explore(state, who, args, report):
         state["codex"][key] += 1
 
     loot = []
+    loot_bonus = explore_loot_bonus(state)
     for item_key, chance in place["drops"]:
-        if random.random() < chance:
+        if random.random() < min(0.95, chance + loot_bonus):
             count = 2 if random.random() < 0.15 else 1
             add_to_bag(state, item_key, count)
             item = ITEMS[item_key]
@@ -870,11 +925,13 @@ def cmd_explore(state, who, args, report):
         xp *= 1.75
     if state["hunger"] > 70:
         xp *= 1.25
-    state["hunger"] = clamp(state["hunger"] + 3.0, 0.0, 100.0)
-    state["vigor"] = clamp(state["vigor"] - (9.0 + place["level"] / 4.0), 0.0, vigor_max(state))
+    state["hunger"] = clamp(state["hunger"] - EXPLORE_HUNGER_COST, 0.0, 100.0)
+    state["vigor"] = clamp(state["vigor"] - explore_vigor_cost(place),
+                              0.0, vigor_max(state))
     state["where"] = place["name"]
 
-    if random.random() < place["danger"]:
+    hazard_chance = max(0.05, place["danger"] - explore_risk_reduction(state))
+    if random.random() < hazard_chance:
         kind, _weight = weighted_choice(list(HAZARD_WEIGHTS))
         lines.append(random.choice(HAZARDS[kind]))
         if kind == "leap":
@@ -896,9 +953,10 @@ def cmd_explore(state, who, args, report):
             xp += 6
             lines.append("多了两根尖刺。")
 
-    levels = give_xp(state, xp)
-    lines.append("获得 %s，获得 %d 经验。" % ("、".join(loot), int(xp)) if has_loot
-                 else "什么也没带回来，获得 %d 经验。" % int(xp))
+    xp_awarded = int(round(xp))
+    levels = give_xp(state, xp_awarded)
+    lines.append("获得 %s，获得 %d 经验。" % ("、".join(loot), xp_awarded) if has_loot
+                 else "什么也没带回来，获得 %d 经验。" % xp_awarded)
     lines.extend(vitals_lines(state))
     if levels:
         lines.insert(len(lines) - 2,
@@ -935,15 +993,19 @@ def cmd_feed(state, who, args, report):
         # 不给参数就直接喂：挑背包里最好的那份
         held = [k for k, n in state["bag"].items()
                 if n > 0 and ITEMS[k]["kind"] != "tool"]
-        if not held:
+        safe = [k for k in held if ITEMS[k]["bond"] >= 0]
+        if not safe:
+            if held:
+                return "err", ("包里的可投喂物都会降低信任。请用 `%s <物品>` 明确指定。" %
+                               cmd("feed"))
             if state["bag"]:
                 return "err", "包里只有探索收获，不能投喂。先用 `%s`。" % cmd("explore")
             return "err", "包是空的。先用 `%s`。" % cmd("explore")
-        args = max(held, key=lambda k: (ITEMS[k]["nourish"], ITEMS[k]["bond"]))
+        args = max(safe, key=lambda k: (ITEMS[k]["nourish"], ITEMS[k]["bond"]))
 
     cooldown = cd_left(state, "feed", FEED_CD)
     if cooldown > 0:
-        return "err", "它还在嚼，%s。" % fmt_dur(cooldown)
+        return "err", fmt_dur(cooldown)
 
     parts = args.split()
     key, item = resolve_item(state, parts[0])
@@ -970,9 +1032,8 @@ def cmd_feed(state, who, args, report):
 
     nourishment = min(100.0 - state["hunger"], item["nourish"] * count)
     state["hunger"] = clamp(state["hunger"] + nourishment, 0.0, 100.0)
-    state["entropy"] = clamp(state["entropy"] + item["entropy"] * min(count, 3) * 0.7, 0.0, 100.0)
-    gained = add_bond(state, item["bond"] * count)
-    xp_amount = item["xp"] * count
+    gained = add_bond(state, feed_bond_amount(item, count))
+    xp_amount = feed_xp_amount(item, count)
     levels = give_xp(state, xp_amount)
 
     lines = ["**%s x%d**" % (item["name"], count), item["description"]]
@@ -996,6 +1057,10 @@ def cmd_feed(state, who, args, report):
 
 
 def cmd_pet(state, who, args, report):
+    cooldown = cd_left(state, "pet", PET_CD)
+    if cooldown > 0:
+        return "err", fmt_dur(cooldown)
+    state["cd"]["pet"] = time.time()
     state["tally"]["pets"] += 1
 
     name = state["name"]
@@ -1070,3 +1135,6 @@ def on_message(message):
 
 def on_failure(event_name, event_data, error):
     log("[%s] failed: %r" % (event_name, error))
+
+
+

@@ -1,0 +1,10 @@
+{
+  "slug": "talktollm",
+  "nickname": "Parrot",
+  "author": "hugo's agent",
+  "timeout": 30.0,
+  "tolerance": 10.0,
+  "created_at": "2026-10-03T07:56:35+00:00",
+  "created_ts": 1791014195.783905,
+  "deployed_at": "2026-10-14T12:57:22+00:00"
+}

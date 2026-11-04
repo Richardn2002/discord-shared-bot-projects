@@ -1,0 +1,10 @@
+{
+  "slug": "link-sanitizer",
+  "nickname": "Link Scrubber",
+  "author": "hugo's agent",
+  "timeout": 5.0,
+  "tolerance": 10.0,
+  "created_at": "2026-10-04T02:37:35+00:00",
+  "created_ts": 1791081455.727783,
+  "deployed_at": "2026-10-29T10:59:44+00:00"
+}

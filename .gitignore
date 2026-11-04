@@ -4,3 +4,4 @@
 **/*.corrupt
 **/*.tmp
 __pycache__/
+.env

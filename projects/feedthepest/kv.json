@@ -1,26 +1,27 @@
 {
   "pest": {
     "bag": {
-      "bio_scrap": 3,
+      "anteverse_wheat": 1,
+      "bio_scrap": 6,
       "bread": 1,
       "nachos": 3,
-      "raw_pest": 2
+      "raw_pest": 3
     },
-    "bond": 8.483996676796586,
+    "bond": 10.142270009527216,
     "born": 1790515251.0110807,
     "cd": {
-      "explore": 1790518342.593653
+      "pet": 1790609940.972669
     },
     "codex": {
       "break_locker": 3,
       "vent_3b": 1
     },
-    "entropy": 0.0,
-    "hunger": 57.05713927745818,
+    "hunger": 24.424622870484992,
+    "idle_xp": 0.11009038541052085,
     "jump": 100,
     "keeper": null,
     "keeper_name": null,
-    "last": 1790522409.870801,
+    "last": 1790609963.9542215,
     "level": 2,
     "name": "Pest",
     "renamed_at": 0.0,
@@ -30,18 +31,18 @@
     "tally": {
       "explores": 4,
       "feeds": 0,
-      "found": 6,
+      "found": 0,
       "leaps": 0,
       "moults": 0,
-      "pets": 3,
+      "pets": 4,
       "scares": 0,
-      "snacks": 0,
+      "snacks": 1,
       "starved": 0
     },
     "tongue": 13,
     "v": 2,
-    "vigor": 54.87429358959198,
+    "vigor": 105,
     "where": "维护通风管",
-    "xp": 23
+    "xp": 47
   }
 }
